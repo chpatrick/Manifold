@@ -10,9 +10,14 @@ int main(int argc, char** argv)
   if (argc < 3)
   {
     cout << "./manifold input.obj output.obj [resolution=20000] [-s]\n";
-    return 0;
+    return 1;
   }
   obj.Load(argv[1]);
+
+  if (obj.face_indices.empty()) {
+    cout << "Input mesh is empty!" << endl;
+    return 1;
+  }
 
   if (argc > 3)
   {
